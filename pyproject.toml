@@ -1,0 +1,23 @@
+[project]
+name = "asset-flow"
+version = "1.0.0"
+description = "A fast, lightweight REST API for converting file formats (CSV ↔ JSON) and optimizing images (JPG/PNG → WebP)."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.34.0",
+    "python-multipart>=0.0.18",
+    "Pillow>=11.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "httpx>=0.28.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
