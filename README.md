@@ -1,8 +1,8 @@
 # Asset Flow
 
-This is lightweight **REST API** built with [FastAPI](https://fastapi.tiangolo.com/) for converting file formats and optimizing images.
+This is a lightweight **REST API** I built with [FastAPI](https://fastapi.tiangolo.com/) for converting file formats and optimizing images. Basically to help save developer time and testing.
 
-> Convert **CSV ↔ JSON** in one request. Compress **JPG/PNG - WebP** for up to 70 %+ file-size savings.
+> Convert **CSV to JSON** in one request. Compress **JPG/PNG to WebP** for up to 70 %+ file-size savings.
 
 ---
 
@@ -260,8 +260,8 @@ asset-flow/
 │   │   └── convert.py        # POST /api/v1/convert/*
 │   └── services/
 │       ├── __init__.py
-│       ├── csv_json.py       # CSV ↔ JSON logic
-│       └── image.py          # Image → WebP logic
+│       ├── csv_json.py       # CSV to JSON logic
+│       └── image.py          # Image to WebP logic
 ├── tests/
 │   ├── __init__.py
 │   ├── test_csv_json.py      # CSV/JSON unit tests
