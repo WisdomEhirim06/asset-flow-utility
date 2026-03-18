@@ -1,36 +1,36 @@
-# 🔄 Asset Flow
+# Asset Flow
 
-A fast, lightweight **REST API** built with [FastAPI](https://fastapi.tiangolo.com/) for converting file formats and optimizing images.
+This is lightweight **REST API** built with [FastAPI](https://fastapi.tiangolo.com/) for converting file formats and optimizing images.
 
-> Convert **CSV ↔ JSON** in one request. Compress **JPG/PNG → WebP** for up to 70 %+ file-size savings.
+> Convert **CSV ↔ JSON** in one request. Compress **JPG/PNG - WebP** for up to 70 %+ file-size savings.
 
 ---
 
-## ✨ Features
+## Features
 
 | Feature | Description |
 |---------|-------------|
-| **CSV → JSON** | Upload a CSV file and receive a structured JSON array |
-| **JSON → CSV** | Upload a JSON array of objects and download a CSV file |
-| **Image → WebP** | Convert JPEG/PNG images to WebP with configurable quality |
+| **CSV - JSON** | Upload a CSV file and receive a structured JSON array |
+| **JSON - CSV** | Upload a JSON array of objects and download a CSV file |
+| **Image - WebP** | Convert JPEG/PNG images to WebP with configurable quality |
 | **Auto Docs** | Interactive Swagger UI & ReDoc generated automatically |
 | **Validation** | File-type, file-size, and content validation with clear error messages |
 | **CORS Ready** | Pre-configured Cross-Origin Resource Sharing for frontend integration |
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-- **[Python 3.13.12](https://python.org)** — Modern Python with type hints
-- **[FastAPI](https://fastapi.tiangolo.com/)** — High-performance async web framework
-- **[Pydantic v2](https://docs.pydantic.dev/)** — Data validation and settings management
-- **[Pillow](https://python-pillow.org/)** — Image processing (JPG/PNG → WebP)
-- **[Uvicorn](https://www.uvicorn.org/)** — Lightning-fast ASGI server
-- **[pytest](https://pytest.org/)** — Testing framework
+- **[Python 3.13.12](https://python.org)** - Modern Python with type hints
+- **[FastAPI](https://fastapi.tiangolo.com/)** - High-performance async web framework
+- **[Pydantic v2](https://docs.pydantic.dev/)** - Data validation and settings management
+- **[Pillow](https://python-pillow.org/)** - Image processing (JPG/PNG - WebP)
+- **[Uvicorn](https://www.uvicorn.org/)** - Lightning-fast ASGI server
+- **[pytest](https://pytest.org/)** - Testing framework
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -85,7 +85,7 @@ The API is now running at **http://localhost:8000**.
 
 ---
 
-## 📖 API Reference
+## API Reference
 
 ### Health Check
 
@@ -104,7 +104,7 @@ GET /health
 
 ---
 
-### Convert CSV → JSON
+### Convert CSV to JSON
 
 ```
 POST /api/v1/convert/csv-to-json
@@ -112,7 +112,7 @@ POST /api/v1/convert/csv-to-json
 
 Upload a `.csv` file and receive a JSON array of objects.
 
-**Request** — `multipart/form-data`
+**Request** - `multipart/form-data`
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -142,7 +142,7 @@ curl -X POST http://localhost:8000/api/v1/convert/csv-to-json \
 
 ---
 
-### Convert JSON → CSV
+### Convert JSON to CSV
 
 ```
 POST /api/v1/convert/json-to-csv
@@ -150,7 +150,7 @@ POST /api/v1/convert/json-to-csv
 
 Upload a `.json` file containing an array of objects and download a CSV.
 
-**Request** — `multipart/form-data`
+**Request** - `multipart/form-data`
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -164,7 +164,7 @@ curl -X POST http://localhost:8000/api/v1/convert/json-to-csv \
   -o converted.csv
 ```
 
-**Response** `200 OK` — A downloadable CSV file.
+**Response** `200 OK` - A downloadable CSV file.
 
 ```
 name,age,city
@@ -175,7 +175,7 @@ Charlie,35,Chicago
 
 ---
 
-### Convert Image → WebP
+### Convert Image to WebP
 
 ```
 POST /api/v1/convert/image-to-webp
@@ -183,7 +183,7 @@ POST /api/v1/convert/image-to-webp
 
 Upload a JPEG or PNG image and receive an optimized WebP version.
 
-**Request** — `multipart/form-data`
+**Request** - `multipart/form-data`
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -197,7 +197,7 @@ curl -X POST http://localhost:8000/api/v1/convert/image-to-webp \
   -o photo.webp
 ```
 
-**Response** `200 OK` — A downloadable `.webp` image.
+**Response** `200 OK` - A downloadable `.webp` image.
 
 Conversion metadata is included in the `X-Conversion-Meta` response header:
 
@@ -233,7 +233,7 @@ All errors follow a consistent format:
 
 ---
 
-## 🧪 Running Tests
+## Running Tests
 
 Install dev dependencies and run the test suite:
 
@@ -244,7 +244,7 @@ pytest tests/ -v
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 asset-flow/
@@ -275,7 +275,7 @@ asset-flow/
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 All settings can be overridden via environment variables or a `.env` file:
 
@@ -287,7 +287,7 @@ All settings can be overridden via environment variables or a `.env` file:
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -299,4 +299,4 @@ All settings can be overridden via environment variables or a `.env` file:
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
