@@ -48,6 +48,24 @@ def csv_to_json(file_bytes: bytes, filename: str) -> tuple[list[dict], int]:
         raise ConversionError(f"Failed to parse CSV: {exc}")
 
 
+def _flatten(obj: dict, parent_key: str = "", sep: str = ".") -> dict:
+    """Recursively flatten a nested dict into dot-notation keys.
+
+    Nested dicts are expanded (``profile.contact.email``), while lists
+    and other non-dict values are serialized as JSON strings.
+    """
+    items: list[tuple[str, object]] = []
+    for key, value in obj.items():
+        new_key = f"{parent_key}{sep}{key}" if parent_key else key
+        if isinstance(value, dict):
+            items.extend(_flatten(value, new_key, sep).items())
+        elif isinstance(value, (list, tuple)):
+            items.append((new_key, json.dumps(value)))
+        else:
+            items.append((new_key, value))
+    return dict(items)
+
+
 def json_to_csv(file_bytes: bytes, filename: str) -> tuple[str, int]:
     """Convert a JSON array of objects to a CSV string.
 
@@ -104,11 +122,23 @@ def json_to_csv(file_bytes: bytes, filename: str) -> tuple[str, int]:
         raise ConversionError("The JSON array is empty — nothing to convert.")
 
     try:
+        # Flatten nested objects into dot-notation columns
+        flat_data = [_flatten(record) for record in data]
+
+        # Collect ALL field names across every record (order-preserving)
+        fieldnames: list[str] = []
+        seen: set[str] = set()
+        for row in flat_data:
+            for key in row:
+                if key not in seen:
+                    fieldnames.append(key)
+                    seen.add(key)
+
         output = io.StringIO()
-        fieldnames = list(data[0].keys())
-        writer = csv.DictWriter(output, fieldnames=fieldnames)
+        writer = csv.DictWriter(output, fieldnames=fieldnames, restval="")
         writer.writeheader()
-        writer.writerows(data)
-        return output.getvalue(), len(data)
+        writer.writerows(flat_data)
+        return output.getvalue(), len(flat_data)
     except (csv.Error, KeyError) as exc:
         raise ConversionError(f"Failed to write CSV: {exc}")
+

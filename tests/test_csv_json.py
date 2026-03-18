@@ -70,3 +70,12 @@ class TestJsonToCsv:
     def test_array_of_non_objects_raises(self):
         with pytest.raises(InvalidFileError, match="array of objects"):
             json_to_csv(b'[1, 2, 3]', "nums.json")
+
+    def test_nested_objects_are_flattened(self):
+        data = [{"name": "Alice", "address": {"city": "NYC", "zip": "10001"}}]
+        csv_text, count = json_to_csv(json.dumps(data).encode(), "nested.json")
+
+        assert count == 1
+        assert "address.city" in csv_text
+        assert "address.zip" in csv_text
+        assert "NYC" in csv_text
